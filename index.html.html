@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Confirm Enrollment - Make Payment</title>
+  <style>
+    :root {
+      --primary-color: #007BFF;
+      --secondary-color: #f8f9fa;
+      --accent-color: #343a40;
+      --font-ratio: 1.618;
+      --max-width: 700px;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--accent-color);
+      padding: 5vh 5vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      width: 100%;
+      max-width: var(--max-width);
+      padding: calc(1rem * var(--font-ratio));
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: calc(1.5rem * var(--font-ratio));
+      color: var(--primary-color);
+    }
+
+    .payment-link, .qr-container {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .payment-link a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .payment-link a:hover {
+      background-color: #0056b3;
+    }
+
+    .qr-container img {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      display: block;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Confirm Your Enrollment</h2>
+
+    <!-- Mobile Buttons -->
+    <div class="payment-link" id="mobile-only">
+      <a href="intent://pay?pa=saquebsiddiqui@okicici&pn=Saqueb%20Siddiqui&am=4000&tn=Lean%20Startup%20Course#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end"
+         target="_blank" rel="noopener noreferrer">
+         Pay ₹4000 for Lean Startup Course
+      </a>
+    </div>
+    <div class="payment-link" id="mobile-only">
+      <a href="intent://pay?pa=saquebsiddiqui@okicici&pn=Saqueb%20Siddiqui&am=5000&tn=Project%20Management%20Course#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end"
+         target="_blank" rel="noopener noreferrer">
+         Pay ₹5000 for Project Management Course
+      </a>
+    </div>
+    <div class="payment-link" id="mobile-only">
+      <a href="intent://pay?pa=saquebsiddiqui@okicici&pn=Saqueb%20Siddiqui&am=5000&tn=Product%20Management%20Course#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end"
+         target="_blank" rel="noopener noreferrer">
+         Pay ₹5000 for Product Management Course
+      </a>
+    </div>
+
+    <!-- Desktop QR Codes -->
+    <div class="qr-container" id="desktop-only" style="display: none;">
+      <p>📷 Scan QR to pay ₹4000 for Lean Startup Course:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=saquebsiddiqui@okicici&pn=Saqueb+Siddiqui&am=4000&tn=Lean+Startup+Course&size=200x200" alt="QR Lean Startup" />
+
+      <p>📷 Scan QR to pay ₹5000 for Project Management:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=saquebsiddiqui@okicici&pn=Saqueb+Siddiqui&am=5000&tn=Project+Management+Course&size=200x200" alt="QR Project Management" />
+
+      <p>📷 Scan QR to pay ₹5000 for Product Management:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=upi://pay?pa=saquebsiddiqui@okicici&pn=Saqueb+Siddiqui&am=5000&tn=Product+Management+Course&size=200x200" alt="QR Product Management" />
+    </div>
+
+    <p class="note">💡 Mobile users can tap buttons above. Desktop users can scan QR codes.</p>
+  </div>
+
+  <script>
+    // Simple device detection
+    function isMobile() {
+      return /android|iphone|ipad|mobile/i.test(navigator.userAgent);
+    }
+
+    if (!isMobile()) {
+      // Hide mobile links and show QR codes
+      document.querySelectorAll('#mobile-only').forEach(el => el.style.display = 'none');
+      document.getElementById('desktop-only').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
